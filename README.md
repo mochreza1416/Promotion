@@ -1,5 +1,5 @@
 # Getting Started with ASP.NET CORE 6.0
-## CREATE Database
+## CREATE DATABASE
 ```bash
 CREATE Database promotionDB
 ```
