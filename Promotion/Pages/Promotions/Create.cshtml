@@ -1,0 +1,129 @@
+﻿@page
+@model Promotion.Pages.Promotions.CreateModel
+@{
+}
+
+<br />
+<h2>New Promotion</h2>
+
+@if(Model.errorMessage.Length > 0)
+{
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <strong>@Model.errorMessage</strong>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+<form method="post">
+    <div class="row mb-3">
+    <div class="col-sm-6">
+        <div class="row mb-3">
+            <label class="col-sm-12 col-form-label">Promo ID</label>
+            <div class="col-sm-12">
+                <input type="text" class="form-control" name="promo_id" value="" readonly />
+            </div>
+        </div>
+        <div class="row mb-3">
+            <label class="col-sm-12 col-form-label">Promo Type</label>
+            <div class="col-sm-12">
+                <select id="PromoType" class="dropdown-item-text" name="promo_type_id">
+                    <option value="Simple Discount">Simple Discount</option>
+                    <option value="Completed Discount">Completed Discount</option>
+                </select>
+            </div>
+        </div>
+        <div class="row mb-3">
+            <label class="col-sm-12 col-form-label">Value Type</label>
+            <div class="col-sm-3">
+                <select id="ValueType" class="dropdown-item-text" name="value_type_id">
+                    <option value="Persentage">Persentage</option>
+                    <option value="Amount">Amount</option>
+                </select>
+            </div>
+            <div class="col-sm-3">
+                <input type="text" class="form-control" name="amount" value="@Model.promotionInfo.amount" />
+            </div>
+        </div>
+        <div class="row mb-3">
+            <label class="col-sm-12 col-form-label">Item</label>
+            <div class="col-sm-12">
+                <dl>
+                    <dt>
+                    </dt>
+                    <dd>
+                        <input id="item_id" type="file" name="FileUpload.FormFile" />
+                    </dd>
+                </dl>
+                <input  class="btn btn-primary" type="submit" value="Upload"  />
+                <div style="margin-top:15px">
+                    <output name="result"></output>
+                </div>
+            </div>
+        </div>
+        <div class="row mb-3">
+            <label class="col-sm-12 col-form-label">Store</label>
+            <div class="col-sm-12">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th><input type="checkbox" /></th>
+                            <th>store_id</th>
+                            <th>store_name</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach(var item in Model.listStores)
+                        {
+                            <tr>
+                                <td><input type="checkbox" /></td>
+                                <td>@item.store_id</td>
+                                <td>@item.store_name</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-sm-6">
+        <div class="row mb-3">
+            <label class="col-sm-12 col-form-label">Promo Desription</label>
+            <div class="col-sm-12">
+                <input type="text" class="form-control" name="promo_description" value="@Model.promotionInfo.promo_description" />
+            </div>
+        </div>
+        <div class="row mb-3">
+            <label class="col-sm-12 col-form-label">Promo Duration</label>
+            <div class="col-sm-6">
+                <label class="col-sm-12 col-form-label">Start Date</label>
+                <input type="date" class="form-control" name="startdate" value="@Model.promotionInfo.startdate" />
+            </div>
+            <div class="col-sm-6">
+                <label class="col-sm-12 col-form-label">End Date</label>
+                <input type="date" class="form-control" name="enddate" value="@Model.promotionInfo.enddate" />
+            </div>
+        </div>
+        
+    </div>
+    </div>
+    @if(Model.successMessage.Length > 0)
+    {
+        <div class="row mb-3">
+            <div class="col-sm-9">
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <strong>@Model.successMessage</strong>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            </div>
+
+        </div>
+    }
+    <div class="row mb-3">
+        <div class="offset-sm-3 col-sm-3 d-grid">
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+        <div class="col-sm-3 d-grid">
+            <a class="btn btn-outline-primary" href="/" role="button">Cancel</a>
+        </div>
+    </div>
+</form>

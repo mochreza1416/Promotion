@@ -1,0 +1,45 @@
+﻿@page
+@model Promotion.Pages.Promotions.IndexModel
+@{
+}
+
+<br />
+<h2>List of Promotion</h2>
+<a class="btn btn-primary btn-sm" href="/Promotions/create">New Promotion</a>
+<table class="table">
+    <thead>
+        <tr>
+            <th>promo_id</th>
+            <th>promo_type_id</th>
+            <th>value_type_id</th>
+            <th>amount</th>
+            <th>item_id</th>
+            <th>promo_code</th>
+            <th>promo_description</th>
+            <th>startdate</th>
+            <th>enddate</th>
+            <th>created_at</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var item in Model.listPromotions)
+        {
+            <tr>
+                <td>@item.promo_id</td>
+                <td>@item.promo_type_id</td>
+                <td>@item.value_type_id</td>
+                <td>@item.amount</td>
+                <td>@item.item_id</td>
+                <td>@item.promo_code</td>
+                <td>@item.promo_description</td>
+                <td>@item.startdate</td>
+                <td>@item.enddate</td>
+                <td>@item.created_at</td>
+                <td>
+                    <a class="btn btn-primary btn-sm" href="/Promotions/Edit?id=@item.promo_id">Edit</a>
+                    <a class="btn btn-danger btn-sm" href="/Promotions/Delete?id=@item.promo_id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
